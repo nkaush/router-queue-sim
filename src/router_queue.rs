@@ -15,6 +15,11 @@ impl RouterQueue {
         }
     }
 
+    pub fn reset(&mut self) {
+        self.q = VecDeque::new();
+        self.qd = Vec::new();
+    }
+
     pub fn pop(&mut self, t: &Time) -> Option<Packet> {
         match self.q.pop_front() {
             Some(mut p) => {
