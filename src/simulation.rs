@@ -55,7 +55,9 @@ impl SingleSimulation {
         let mut max_queue_size = 0;
         let max_time = (self.total_time * GRANULARITY_INV) + 1;
 
-        for t in (0..max_time).map(|t| Time::init(t)) {
+        let mut tick = 0;
+        while tick < max_time || !self.router_queue.is_empty() {
+            let t = Time::init(tick);
             let count = self.packet_arrivals.get(&t).cloned();
             for _ in 0..count.unwrap_or_default() {
                 self.router_queue.push(Packet::new(&t));
@@ -63,6 +65,7 @@ impl SingleSimulation {
 
             max_queue_size = max(max_queue_size, self.router_queue.len());
             self.router_queue.pop(&t);
+            tick += 1;
         }
 
         let res = (self.router_queue.avg_qd(), max_queue_size);

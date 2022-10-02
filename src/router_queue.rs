@@ -20,6 +20,10 @@ impl RouterQueue {
         self.qd.clear();
     }
 
+    pub fn is_empty(&self) -> bool {
+        self.q.is_empty()
+    }
+
     pub fn pop(&mut self, t: &Time) -> Option<Packet> {
         match self.q.pop_front() {
             Some(mut p) => {
