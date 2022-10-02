@@ -3,14 +3,16 @@ import numpy as np
 
 fig, ax = plt.subplots()
 
+p25 = [m - p for m, p in zip(mean, p25)]
+p75 = [p - m for m, p in zip(mean, p75)]
 xaxis = np.arange(1, 11)
-# xs = np.array(xs)
+
 ax.bar(xaxis, qs, color='r')
 ax.set_xticks(xaxis)
 ax.set_xticklabels(xs)
 plt.xlabel("Arrival Rate / Service Rate (A/R)")
 plt.ylabel("Mean Maximum Queue Size")
-plt.title(f"Mean of Max Queuing Delay for N={N} Simulations Per A/R")
+plt.title(f"Mean of Max Queue Size for N={N} Simulations Per A/R")
 plt.savefig('results/rust-qs.png')
 
 fig, ax = plt.subplots()

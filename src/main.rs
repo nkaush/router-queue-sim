@@ -13,7 +13,7 @@ use std::io::{Read, Write};
 use simulator::Simulator;
 use std::time::Instant;
 
-const NUM_SUMULATIONS: usize = 2000;
+const NUM_SUMULATIONS: usize = 10000;
 const GRAPH_CODE_PATH: &'static str = "python/graph_code.py";
 const SCRIPT_PATH: &'static str = "graph.py";
 
@@ -53,7 +53,7 @@ fn main() -> Result<(), io::Error> {
         avg_qds.push(avg_qd);
         avg_qd_25pcts.push(avg_qd_25pct);
         avg_qd_75pcts.push(avg_qd_75pct);
-        println!("Running {} simulations for arrival rate={} took {}s", num_simulations, arrival_rate, duration);
+        println!("Running {} simulations for arrival rate={} took {:0.3}s", num_simulations, arrival_rate, duration);
     }
 
     let mut results = open_script_file()?;

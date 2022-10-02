@@ -33,7 +33,7 @@ impl SingleSimulation {
     }
 
     fn generate_times(&mut self) {
-        self.packet_arrivals = Default::default();
+        self.packet_arrivals.clear();
         let num_packets = self.arrival_rate * self.total_time;
         let max_time = (self.total_time * GRANULARITY_INV) + 1;
 

@@ -16,8 +16,8 @@ impl RouterQueue {
     }
 
     pub fn reset(&mut self) {
-        self.q = VecDeque::new();
-        self.qd = Vec::new();
+        self.q.clear();
+        self.qd.clear();
     }
 
     pub fn pop(&mut self, t: &Time) -> Option<Packet> {
